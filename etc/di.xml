@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * WindsorCircle Integration DI xml
+ *
+ * @category    WindsorCircle
+ * @package     WindsorCircle_Integration
+ * @author      Mark Hodge <mhodge@lyonscg.com>
+ * @copyright   Copyright (c) 2016 WindsorCircle (www.windsorcircle.com)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="WindsorCircle\Integration\Api\NewsletterRepositoryInterface" type="WindsorCircle\Integration\Model\NewsletterRepository"/>
+    <preference for="WindsorCircle\Integration\Api\Data\NewsletterInterface" type="WindsorCircle\Integration\Model\Newsletter"/>
+    <preference for="WindsorCircle\Integration\Api\Data\NewsletterSearchResultInterface" type="WindsorCircle\Integration\Model\ResourceModel\Newsletter\Collection"/>
+    <preference for="WindsorCircle\Integration\Api\Data\OrderInterface" type="WindsorCircle\Integration\Model\Order"/>
+    <preference for="WindsorCircle\Integration\Api\Data\OrderItemInterface" type="WindsorCircle\Integration\Model\Order\Item"/>
+    <preference for="WindsorCircle\Integration\Api\Data\ProductInterface" type="WindsorCircle\Integration\Model\Product" />
+
+    <type name="Magento\Sales\Api\Data\OrderSearchResultInterfaceFactory">
+        <plugin name="windsorcircleOrderSearchResultInterfaceAroundCreate" type="WindsorCircle\Integration\Model\Plugin\Order\Search" />
+    </type>
+    <type name="Magento\Sales\Api\OrderRepositoryInterface">
+        <plugin name="windsorcircleOrderRepositoryAfterLoad" type="\WindsorCircle\Integration\Model\Plugin\Order\After" />
+    </type>
+    <type name="Magento\Sales\Model\ResourceModel\Order\Item\Collection">
+        <plugin name="windsorcircleOrderItemCollectionAfterLoad" type="\WindsorCircle\Integration\Model\Plugin\Order\Item\AfterCollectionLoad" />
+    </type>
+    <type name="Magento\Sales\Api\OrderItemRepositoryInterface">
+        <plugin name="windsorcircleOrderItemRepositoryAfterLoad" type="\WindsorCircle\Integration\Model\Plugin\Order\Item\After" />
+    </type>
+    <type name="Magento\Catalog\Api\ProductRepositoryInterface">
+        <plugin name="windsorcircleProductRepositoryAfterLoad" type="\WindsorCircle\Integration\Model\Plugin\Product\After" />
+    </type>
+</config>

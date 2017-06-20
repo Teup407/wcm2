@@ -1,0 +1,59 @@
+<?php
+/**
+ * Admin Template file for Signup Block
+ *
+ * @category  WindsorCircle
+ * @package   WindsorCircle_Integration
+ * @author    Mark Hodge <mhodge@lyonscg.com>
+ * @copyright Copyright (c) 2016 WindsorCircle (www.windsorcircle.com)
+ */
+?>
+<?php
+/**
+ * @see \WindsorCircle\Integration\Block\Adminhtml\System\Config\Signup
+ */
+?>
+<script>
+require(['prototype'], function(){
+
+//<![CDATA[
+    function signUp() {
+        var validationMessage = $('validation_result');
+
+        params = {};
+
+        new Ajax.Request('<?php /* @escapeNotVerified */ echo $block->getAjaxUrl() ?>', {
+            parameters: params,
+            onSuccess: function(response) {
+                var result = '<?php /* @escapeNotVerified */ echo __('Error during Sign Up.') ?>';
+                try {
+                    if (response.responseText.isJSON()) {
+                        response = response.responseText.evalJSON();
+                        result = response.message;
+                    }
+                    if (response.valid == 1) {
+                        validationMessage.removeClassName('hidden').addClassName('success');
+
+                        window.open('<?php echo $block->getRedirectUrl() ?>?' + Object.toQueryString(response.params), '_blank');
+                    } else {
+                        validationMessage.removeClassName('hidden').addClassName('error')
+                    }
+                } catch (e) {
+                    validationMessage.removeClassName('hidden').addClassName('error')
+                }
+                validationMessage.update(result);
+            }
+        });
+    }
+
+    window.signUp = signUp;
+//]]>
+
+});
+</script>
+<div class="actions actions-wc-signup">
+    <div id="validation_result" class="message-validation hidden"></div>
+    <button onclick="javascript:signUp(); return false;" class="action-wc-signup" type="button" id="<?php echo $block->getHtmlId() ?>">
+        <span><?php echo $block->escapeHtml($block->getButtonLabel()) ?></span>
+    </button>
+</div>

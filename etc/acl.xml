@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * WindsorCircle Integration ACL xml
+ *
+ * @category    WindsorCircle
+ * @package     WindsorCircle_Integration
+ * @author      Mark Hodge <mhodge@lyonscg.com>
+ * @copyright   Copyright (c) 2016 WindsorCircle (www.windsorcircle.com)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="WindsorCircle_Integration::all" title="WindsorCircle" sortOrder="300">
+                    <resource id="WindsorCircle_Integration::newsletter" title="Newsletter" sortOrder="10" />
+                    <resource id="WindsorCircle_Integration::order" title="Orders" sortOrder="20" />
+                    <resource id="WindsorCircle_Integration::catalog" title="Products" sortOrder="30" />
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

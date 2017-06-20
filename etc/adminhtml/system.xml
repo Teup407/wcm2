@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * WindsorCircle Integration Admin System xml
+ *
+ * @category    WindsorCircle
+ * @package     WindsorCircle_Integration
+ * @author      Mark Hodge <mhodge@lyonscg.com>
+ * @copyright   Copyright (c) 2016 WindsorCircle (www.windsorcircle.com)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="windsorcircle_api" translate="label" type="text" sortOrder="500" showInDefault="1" showInWebsite="0" showInStore="0">
+            <label>Windsor Circle</label>
+            <tab>service</tab>
+            <resource>WindsorCircle_Integration::config_windsorcircle_api</resource>
+            <group id="rest" translate="label comment" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Setup</label>
+                <comment>This allows for the creation of an integration and signing up for a trial with WindsorCircle</comment>
+                <field id="configuration" translate="button_label" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <button_label>Sign Up</button_label>
+                    <frontend_model>WindsorCircle\Integration\Block\Adminhtml\System\Config\Signup</frontend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

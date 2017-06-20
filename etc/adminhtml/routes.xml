@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * WindsorCircle Integration Admin Routes xml
+ *
+ * @category    WindsorCircle
+ * @package     WindsorCircle_Integration
+ * @author      Mark Hodge <mhodge@lyonscg.com>
+ * @copyright   Copyright (c) 2016 WindsorCircle (www.windsorcircle.com)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="admin">
+        <route id="windsorcircle" frontName="windsorcircle">
+            <module name="WindsorCircle_Integration" />
+        </route>
+    </router>
+</config>
